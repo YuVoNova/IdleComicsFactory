@@ -51,7 +51,7 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 7)        // Interactable
+        if (other.gameObject.layer == 8)        // Interactable
         {
             other.GetComponent<Interactable>().StartInteraction();
         }
@@ -59,7 +59,7 @@ public class Player : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.layer == 7)        // Interactable
+        if (other.gameObject.layer == 8)        // Interactable
         {
             other.GetComponent<Interactable>().ExitInteraction();
         }
