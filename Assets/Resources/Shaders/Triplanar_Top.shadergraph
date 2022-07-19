@@ -200,7 +200,7 @@
             },
             "m_InputSlot": {
                 "m_Node": {
-                    "m_Id": "f2195a9c50684b549937c68ef52e5f90"
+                    "m_Id": "2a875b915606492b898e64210790d9e9"
                 },
                 "m_SlotId": 0
             }
@@ -1348,7 +1348,7 @@
     "m_Hidden": false,
     "m_ShaderOutputName": "Z",
     "m_StageCapability": 3,
-    "m_Value": 1.0,
+    "m_Value": -1.0,
     "m_DefaultValue": 0.0,
     "m_Labels": [
         "Z"
