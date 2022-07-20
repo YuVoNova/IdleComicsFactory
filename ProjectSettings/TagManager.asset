@@ -13,9 +13,9 @@ TagManager:
   - UI
   - Ground
   - Wall
-  - 
-  - 
-  - 
+  - Interactable
+  - Magnet
+  - Money
   - 
   - 
   - 
