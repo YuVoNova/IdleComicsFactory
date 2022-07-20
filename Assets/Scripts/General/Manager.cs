@@ -110,7 +110,7 @@ public class Manager : MonoBehaviour
 
     public void Save()
     {
-        SerializeData();
+        //SerializeData();
     }
 
     #region Data Handling
@@ -120,7 +120,8 @@ public class Manager : MonoBehaviour
         PlayerData = new PlayerData();
         jsonData = new JsonData();
 
-        dataPath = Path.Combine(Application.persistentDataPath, "GHM.json");
+        /*
+        dataPath = Path.Combine(Application.persistentDataPath, "IdleComicsFactory.json");
 
         if (File.Exists(dataPath))
         {
@@ -136,6 +137,7 @@ public class Manager : MonoBehaviour
 
             SerializeData();
         }
+        */
     }
 
     // Saves progress data.

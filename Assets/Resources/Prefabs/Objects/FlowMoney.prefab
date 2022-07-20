@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TargetTransform: {fileID: 0}
   IsOn: 0
-  Speed: 15
+  Speed: 13
 --- !u!1 &8699629678519238140
 GameObject:
   m_ObjectHideFlags: 0

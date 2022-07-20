@@ -68,7 +68,10 @@ public class Player : MonoBehaviour
 
     // Methods
 
-    
+    public void ComicTaken()
+    {
+
+    }
 
 
 }
