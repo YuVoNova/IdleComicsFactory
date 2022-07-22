@@ -4,15 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class Interactable_BuyMachine : Interactable
+public class Interactable_BuyExpansion : Interactable
 {
     [SerializeField]
     private TMP_Text PriceText;
     [SerializeField]
     private Image FillerCircle;
-
-    [SerializeField]
-    private GameObject Machine;
 
     [SerializeField]
     private int BasePrice;
@@ -24,7 +21,8 @@ public class Interactable_BuyMachine : Interactable
     {
         base.Awake();
 
-        Initialize(false);
+        currentPrice = BasePrice;
+        step = Mathf.FloorToInt(Mathf.Clamp(currentPrice / 50f, 1f, float.MaxValue));
 
         UpdatePriceText();
     }
@@ -81,7 +79,9 @@ public class Interactable_BuyMachine : Interactable
                 {
                     Player.Instance.MoneyFlow.EndFlow();
 
-                    EnableMachine();
+                    GameManager.Instance.EnableExpansion();
+
+                    gameObject.SetActive(false);
                 }
             }
         }
@@ -96,28 +96,5 @@ public class Interactable_BuyMachine : Interactable
         PriceText.text = currentPrice + "";
 
         FillerCircle.fillAmount = 1f - ((float)currentPrice / BasePrice);
-    }
-
-    private void EnableMachine()
-    {
-        // TO DO -> Enable Machine and disable Interactable here.
-        Machine.SetActive(true);
-
-        gameObject.SetActive(false);
-    }
-
-    public void Initialize(bool isFirst)
-    {
-        currentPrice = BasePrice;
-        step = Mathf.FloorToInt(Mathf.Clamp(currentPrice / 50f, 1f, float.MaxValue));
-
-        if (isFirst)
-        {
-            EnableMachine();
-        }
-        else
-        {
-            Machine.SetActive(false);
-        }
     }
 }

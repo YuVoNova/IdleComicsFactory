@@ -8,8 +8,6 @@ public class Interactable : MonoBehaviour
     [SerializeField]
     private float PreInteractionDuration;
 
-    private float currentDuration;
-
     private bool hasPreInteraction;
 
     private float interactionTimer;
@@ -69,9 +67,7 @@ public class Interactable : MonoBehaviour
 
     public virtual void StartInteraction()
     {
-        currentDuration = Duration;
         interactionTimer = Duration;
-
         preInteractionTimer = PreInteractionDuration;
 
         hasPreInteraction = true;

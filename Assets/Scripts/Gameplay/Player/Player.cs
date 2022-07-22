@@ -27,6 +27,9 @@ public class Player : MonoBehaviour
 
     [Header("Values", order = 0)]
 
+    [HideInInspector]
+    public bool IsOpenForSales;
+
     private bool isNavigating;
 
 

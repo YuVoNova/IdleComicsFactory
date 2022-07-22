@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 public class Interactable_Machine : Interactable
 {
@@ -30,7 +29,7 @@ public class Interactable_Machine : Interactable
         currentIndex = 0;
 
         comicSpawnTimer = ComicSpawnDuration;
-        //magnetizeTimer = MagnetizeDuration;
+        magnetizeTimer = MagnetizeDuration;
 
         comicsList = new List<Comic>();
         foreach (Transform child in ComicsParent)
@@ -59,14 +58,11 @@ public class Interactable_Machine : Interactable
         {
             if (currentIndex > 0 && currentIndex <= comicsList.Count)
             {
-                currentIndex--;
-
-                comicsList[currentIndex].Magnetize();
-
-                /*
                 if (magnetizeTimer <= 0f)
                 {
-                    
+                    currentIndex--;
+
+                    comicsList[currentIndex].Magnetize();
 
                     magnetizeTimer = MagnetizeDuration;
                 }
@@ -74,12 +70,7 @@ public class Interactable_Machine : Interactable
                 {
                     magnetizeTimer -= Time.deltaTime;
                 }
-                */
             }
-        }
-        else
-        {
-
         }
     }
 
@@ -95,7 +86,7 @@ public class Interactable_Machine : Interactable
         base.ExitInteraction();
 
         comicSpawnTimer = ComicSpawnDuration;
-        //magnetizeTimer = MagnetizeDuration;
+        magnetizeTimer = MagnetizeDuration;
 
         isInteracting = false;
     }

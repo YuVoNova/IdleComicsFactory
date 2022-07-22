@@ -91,5 +91,8 @@ public class GameManager : MonoBehaviour
         Manager.Instance.Save();
     }
 
-
+    public void EnableExpansion()
+    {
+        // TO DO -> Enable expansion here.
+    }
 }
