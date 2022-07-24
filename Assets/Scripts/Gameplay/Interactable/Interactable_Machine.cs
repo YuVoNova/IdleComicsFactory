@@ -56,7 +56,7 @@ public class Interactable_Machine : Interactable
         }
         if (isInteracting)
         {
-            if (currentIndex > 0 && currentIndex <= comicsList.Count)
+            if (currentIndex > 0 && currentIndex <= comicsList.Count && Player.Instance.AvailableForComics)
             {
                 if (magnetizeTimer <= 0f)
                 {

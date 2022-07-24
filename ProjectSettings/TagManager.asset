@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Shelf
+  - Truck
   layers:
   - Default
   - TransparentFX
@@ -16,8 +18,8 @@ TagManager:
   - Interactable
   - Magnet
   - Money
-  - 
-  - 
+  - Comic
+  - Target
   - 
   - 
   - 

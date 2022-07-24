@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 7543478663248812833}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 325, y: 324.99997, z: 324.99997}
+  m_LocalScale: {x: 405, y: 405, z: 405}
   m_Children: []
   m_Father: {fileID: 8247009645180304251}
   m_RootOrder: 0
@@ -91,6 +91,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8247009645180304251}
   - component: {fileID: 8248511716169377390}
+  - component: {fileID: 611550720571752121}
   m_Layer: 8
   m_Name: AreaMoney
   m_TagString: Untagged
@@ -107,7 +108,7 @@ Transform:
   m_GameObject: {fileID: 8247009645180304253}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4799568978460181994}
   m_Father: {fileID: 0}
@@ -125,3 +126,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e8ef937673cb5c40825465c8f0bdac4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Amount: 10
+  Speed: 13
+--- !u!95 &611550720571752121
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8247009645180304253}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d745509cb1c181f4f8cf5f5c338fc033, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

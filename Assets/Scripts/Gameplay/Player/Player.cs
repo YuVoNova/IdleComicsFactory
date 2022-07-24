@@ -15,6 +15,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     private PlayerController PlayerController;
 
+    [SerializeField]
+    private PlayerComic[] Comics;
+
     public Animator Animator;
 
     public MoneyFlow MoneyFlow;
@@ -28,9 +31,13 @@ public class Player : MonoBehaviour
     [Header("Values", order = 0)]
 
     [HideInInspector]
-    public bool IsOpenForSales;
+    public int ComicCapacity;
+    private int currentComicCount;
 
-    private bool isNavigating;
+    [HideInInspector]
+    public bool AvailableForComics;
+    [HideInInspector]
+    public bool IsOpenForSales;
 
 
     // Unity Functions
@@ -39,7 +46,10 @@ public class Player : MonoBehaviour
     {
         Instance = this;
 
+        currentComicCount = 0;
+        ComicCapacity = Comics.Length;
 
+        AvailableForComics = true;
     }
 
     private void Start()
@@ -71,9 +81,45 @@ public class Player : MonoBehaviour
 
     // Methods
 
-    public void ComicTaken()
+    public void TakeComic()
     {
+        Comics[currentComicCount].gameObject.SetActive(true);
 
+        currentComicCount++;
+
+        /*
+        AudioSource.volume = 0.4f;
+        AudioSource.clip = Manager.Instance.Audios["EnergyPickup"];
+        AudioSource.Play();
+        */
+
+        if (currentComicCount >= ComicCapacity)
+        {
+            AvailableForComics = false;
+
+            // TO DO -> Print "MAX" here.
+        }
+    }
+
+    public void GiveComic(Vector3 position)
+    {
+        if (currentComicCount > 0)
+        {
+            currentComicCount--;
+
+            Comics[currentComicCount].Magnetize(position);
+
+            /*
+            AudioSource.volume = 0.4f;
+            AudioSource.clip = Manager.Instance.Audios["EnergyAcquired"];
+            AudioSource.Play();
+            */
+
+            if (currentComicCount < ComicCapacity)
+            {
+                AvailableForComics = true;
+            }
+        }
     }
 
 

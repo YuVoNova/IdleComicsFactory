@@ -31,7 +31,7 @@ public class Comic : MonoBehaviour
 
             if (Vector3.Distance(transform.position, targetPosition) < 0.2f)
             {
-                Player.Instance.ComicTaken();
+                Player.Instance.TakeComic();
 
                 isMagnetized = false;
 
