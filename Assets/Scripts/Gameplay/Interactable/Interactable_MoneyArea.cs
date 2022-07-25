@@ -30,8 +30,6 @@ public class Interactable_MoneyArea : Interactable
         }
 
         isInteracting = false;
-
-        //SpawnMoney(100);
     }
 
     protected override void Update()

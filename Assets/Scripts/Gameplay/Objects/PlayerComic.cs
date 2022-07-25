@@ -60,7 +60,7 @@ public class PlayerComic : MonoBehaviour
             {
                 Disable();
 
-                // TO DO -> Acquire from Shelf.
+                GameManager.Instance.Truck.TakeComic();
             }
         }
     }
@@ -80,6 +80,8 @@ public class PlayerComic : MonoBehaviour
         transform.localRotation = originRotation;
 
         Collider.enabled = false;
+
+        gameObject.SetActive(false);
 
         isMagnetized = false;
     }

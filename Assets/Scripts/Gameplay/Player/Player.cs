@@ -30,7 +30,6 @@ public class Player : MonoBehaviour
 
     [Header("Values", order = 0)]
 
-    [HideInInspector]
     public int ComicCapacity;
     private int currentComicCount;
 
@@ -47,7 +46,6 @@ public class Player : MonoBehaviour
         Instance = this;
 
         currentComicCount = 0;
-        ComicCapacity = Comics.Length;
 
         AvailableForComics = true;
     }
@@ -101,7 +99,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void GiveComic(Vector3 position)
+    public bool GiveComic(Vector3 position)
     {
         if (currentComicCount > 0)
         {
@@ -119,6 +117,12 @@ public class Player : MonoBehaviour
             {
                 AvailableForComics = true;
             }
+
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 

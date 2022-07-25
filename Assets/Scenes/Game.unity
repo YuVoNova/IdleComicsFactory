@@ -1187,7 +1187,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NavMeshSurface: {fileID: 150604906}
-  CameraMovement: {fileID: 0}
+  CameraMovement: {fileID: 1907248332}
+  Truck: {fileID: 2103220194}
   IsGameOn: 0
   OnMenu: 0
 --- !u!1 &1295599698
@@ -1307,6 +1308,7 @@ MonoBehaviour:
   MoneyFlow: {fileID: 1295599701}
   MoneyFlowPoint: {fileID: 1108427855}
   AudioSource: {fileID: 1295599706}
+  ComicCapacity: 10
   AvailableForComics: 0
   IsOpenForSales: 0
 --- !u!65 &1295599704
@@ -2074,6 +2076,74 @@ Transform:
   m_Father: {fileID: 1295599699}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2103220193
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2260128585181458160, guid: 41830f1a584ff1c44a490c7d31e04b0a, type: 3}
+      propertyPath: m_RootOrder
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 2260128585181458160, guid: 41830f1a584ff1c44a490c7d31e04b0a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 12.499999
+      objectReference: {fileID: 0}
+    - target: {fileID: 2260128585181458160, guid: 41830f1a584ff1c44a490c7d31e04b0a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2260128585181458160, guid: 41830f1a584ff1c44a490c7d31e04b0a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2260128585181458160, guid: 41830f1a584ff1c44a490c7d31e04b0a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2260128585181458160, guid: 41830f1a584ff1c44a490c7d31e04b0a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2260128585181458160, guid: 41830f1a584ff1c44a490c7d31e04b0a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2260128585181458160, guid: 41830f1a584ff1c44a490c7d31e04b0a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2260128585181458160, guid: 41830f1a584ff1c44a490c7d31e04b0a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2260128585181458160, guid: 41830f1a584ff1c44a490c7d31e04b0a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2260128585181458160, guid: 41830f1a584ff1c44a490c7d31e04b0a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6086340301748778163, guid: 41830f1a584ff1c44a490c7d31e04b0a, type: 3}
+      propertyPath: m_Name
+      value: Truck
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 41830f1a584ff1c44a490c7d31e04b0a, type: 3}
+--- !u!114 &2103220194 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1128632272574523768, guid: 41830f1a584ff1c44a490c7d31e04b0a, type: 3}
+  m_PrefabInstance: {fileID: 2103220193}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfedf94d0e901bf4db3e1b434cb2cf9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2130984487
 PrefabInstance:
   m_ObjectHideFlags: 0

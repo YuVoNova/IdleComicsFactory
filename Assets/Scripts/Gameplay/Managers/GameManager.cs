@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
 
     public CameraMovement CameraMovement;
 
+    public Interactable_Truck Truck;
+
 
     // Values
 
