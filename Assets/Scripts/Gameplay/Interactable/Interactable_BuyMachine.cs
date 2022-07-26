@@ -24,7 +24,7 @@ public class Interactable_BuyMachine : Interactable
     {
         base.Awake();
 
-        Initialize(false);
+        Initialize(true);
 
         UpdatePriceText();
     }

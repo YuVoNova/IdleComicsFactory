@@ -14,6 +14,8 @@ public class Comic : MonoBehaviour
 
     private void Awake()
     {
+        transform.eulerAngles = new Vector3(0f, Random.Range(-7.5f, 7.5f), 0f);
+
         originPosition = transform.position;
         originRotation = transform.rotation;
 
