@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class Interactable_BuyMachine : Interactable
+public class Interactable_BuyShelf : Interactable
 {
     [SerializeField]
     private TMP_Text PriceText;
@@ -10,7 +10,7 @@ public class Interactable_BuyMachine : Interactable
     private Image FillerCircle;
 
     [SerializeField]
-    private GameObject Machine;
+    private GameObject Shelf;
 
     [SerializeField]
     private int BasePrice;
@@ -22,7 +22,7 @@ public class Interactable_BuyMachine : Interactable
     {
         base.Awake();
 
-        Initialize(true);
+        Initialize(false);
 
         UpdatePriceText();
     }
@@ -79,7 +79,7 @@ public class Interactable_BuyMachine : Interactable
                 {
                     Player.Instance.MoneyFlow.EndFlow();
 
-                    EnableMachine();
+                    EnableShelf();
                 }
             }
         }
@@ -96,9 +96,9 @@ public class Interactable_BuyMachine : Interactable
         FillerCircle.fillAmount = 1f - ((float)currentPrice / BasePrice);
     }
 
-    private void EnableMachine()
+    private void EnableShelf()
     {
-        Machine.SetActive(true);
+        Shelf.SetActive(true);
 
         gameObject.SetActive(false);
     }
@@ -110,11 +110,11 @@ public class Interactable_BuyMachine : Interactable
 
         if (isFirst)
         {
-            EnableMachine();
+            EnableShelf();
         }
         else
         {
-            Machine.SetActive(false);
+            Shelf.SetActive(false);
         }
     }
 }

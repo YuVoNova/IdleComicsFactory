@@ -3,6 +3,9 @@ using UnityEngine;
 public class Interactable_Shelf : Interactable
 {
     [SerializeField]
+    private int ID;
+
+    [SerializeField]
     private Transform ShelfTargetCollider;
 
     [SerializeField]
@@ -77,7 +80,6 @@ public class Interactable_Shelf : Interactable
 
     public void TakeComic()
     {
-        Debug.Log("asdasd");
         ComicObjects[currentIndex].SetActive(true);
 
         currentIndex = Mathf.Clamp(currentIndex + 1, 0, comicCapacity);

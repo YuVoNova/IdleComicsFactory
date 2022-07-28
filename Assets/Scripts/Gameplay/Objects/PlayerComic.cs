@@ -54,7 +54,6 @@ public class PlayerComic : MonoBehaviour
             {
                 Disable();
 
-                Debug.Log("shelved");
                 other.transform.parent.Find("Interactable_Shelf").GetComponent<Interactable_Shelf>().TakeComic();
             }
             else if (other.transform.tag == "Truck")
@@ -68,7 +67,6 @@ public class PlayerComic : MonoBehaviour
 
     public void Magnetize(Vector3 position)
     {
-        Debug.Log("magnetized");
         targetPosition = position;
 
         Collider.enabled = true;
@@ -78,7 +76,6 @@ public class PlayerComic : MonoBehaviour
 
     private void Disable()
     {
-        Debug.Log("disabled");
         transform.localPosition = originPosition;
         transform.localRotation = originRotation;
 

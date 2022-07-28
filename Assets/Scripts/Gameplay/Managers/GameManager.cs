@@ -21,6 +21,14 @@ public class GameManager : MonoBehaviour
 
     public Interactable_Truck Truck;
 
+    [SerializeField]
+    private List<Interactable_Shelf> Shelves;
+
+    [HideInInspector]
+    public List<int> EmptyShelves;
+    [HideInInspector]
+    public List<int> AvailableShelves;
+
 
     // Values
 
