@@ -18,11 +18,14 @@ public class Interactable_BuyMachine : Interactable
     private int payValue;
     private int step;
 
+    [SerializeField]
+    private bool isFirst;
+
     protected override void Awake()
     {
         base.Awake();
 
-        Initialize(true);
+        Initialize();
 
         UpdatePriceText();
     }
@@ -103,7 +106,7 @@ public class Interactable_BuyMachine : Interactable
         gameObject.SetActive(false);
     }
 
-    public void Initialize(bool isFirst)
+    public void Initialize()
     {
         currentPrice = BasePrice;
         step = Mathf.FloorToInt(Mathf.Clamp(currentPrice / 50f, 1f, float.MaxValue));

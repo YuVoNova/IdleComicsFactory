@@ -5,6 +5,9 @@ using TMPro;
 public class Interactable_BuyShelf : Interactable
 {
     [SerializeField]
+    private int ID;
+
+    [SerializeField]
     private TMP_Text PriceText;
     [SerializeField]
     private Image FillerCircle;
@@ -18,11 +21,14 @@ public class Interactable_BuyShelf : Interactable
     private int payValue;
     private int step;
 
+    [SerializeField]
+    private bool isFirst;
+
     protected override void Awake()
     {
         base.Awake();
 
-        Initialize(false);
+        Initialize();
 
         UpdatePriceText();
     }
@@ -101,9 +107,11 @@ public class Interactable_BuyShelf : Interactable
         Shelf.SetActive(true);
 
         gameObject.SetActive(false);
+
+        GameManager.Instance.AddShelf(ID);
     }
 
-    public void Initialize(bool isFirst)
+    public void Initialize()
     {
         currentPrice = BasePrice;
         step = Mathf.FloorToInt(Mathf.Clamp(currentPrice / 50f, 1f, float.MaxValue));

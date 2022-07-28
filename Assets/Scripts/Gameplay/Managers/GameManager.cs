@@ -29,6 +29,9 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public List<int> AvailableShelves;
 
+    [HideInInspector]
+    public List<Customer> Customers;
+
 
     // Values
 
@@ -38,6 +41,14 @@ public class GameManager : MonoBehaviour
     public bool IsGameOn;
     [HideInInspector]
     public bool OnMenu;
+
+    private int availableComicCount;
+
+    [SerializeField]
+    private int CustomerCapacity;
+
+    private float customerSpawnDuration;
+    private float customerSpawnTimer;
 
 
     // Unity Functions
@@ -50,6 +61,10 @@ public class GameManager : MonoBehaviour
 
         IsGameOn = true;
         OnMenu = false;
+
+        Customers = new List<Customer>();
+
+        availableComicCount = 0;
     }
 
     private void Start()
@@ -59,7 +74,22 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (IsGameOn)
+        {
+            if (customerSpawnTimer <= 0f)
+            {
+                if (AvailableShelves.Count > 0 && Customers.Count < availableComicCount && Customers.Count < CustomerCapacity)
+                {
+                    SpawnCustomer();
 
+                    customerSpawnTimer = customerSpawnDuration;
+                }
+            }
+            else
+            {
+                customerSpawnTimer -= Time.deltaTime;
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -104,5 +134,37 @@ public class GameManager : MonoBehaviour
     public void EnableExpansion()
     {
         // TO DO -> Enable expansion here.
+    }
+
+    public void AddShelf(int id)
+    {
+        if (!EmptyShelves.Contains(id))
+        {
+            EmptyShelves.Add(id);
+            Shelves[id].SetID(id);
+        }
+    }
+
+    public void ShelfAvailable(int id)
+    {
+        if (EmptyShelves.Contains(id) && !AvailableShelves.Contains(id))
+        {
+            EmptyShelves.Remove(id);
+            AvailableShelves.Add(id);
+        }
+    }
+
+    public void ShelfExpired(int id)
+    {
+        if (AvailableShelves.Contains(id) && !EmptyShelves.Contains(id))
+        {
+            AvailableShelves.Remove(id);
+            EmptyShelves.Add(id);
+        }
+    }
+
+    private void SpawnCustomer()
+    {
+
     }
 }
