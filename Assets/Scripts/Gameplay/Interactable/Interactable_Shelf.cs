@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class Interactable_Shelf : Interactable
 {
-    [SerializeField]
     private int ID;
 
     [SerializeField]
@@ -11,7 +10,10 @@ public class Interactable_Shelf : Interactable
     [SerializeField]
     private GameObject[] ComicObjects;
 
-    private int currentIndex;
+    [HideInInspector]
+    public int CurrentIndex;
+    [HideInInspector]
+    public int ReservedIndex;
     private int comicCapacity;
 
     [SerializeField]
@@ -24,7 +26,8 @@ public class Interactable_Shelf : Interactable
     {
         base.Awake();
 
-        currentIndex = 0;
+        CurrentIndex = 0;
+        ReservedIndex = 0;
         comicCapacity = ComicObjects.Length;
         magnetizeTimer = MagnetizeDuration;
 
@@ -37,7 +40,7 @@ public class Interactable_Shelf : Interactable
 
         if (isInteracting)
         {
-            if (currentIndex < comicCapacity)
+            if (CurrentIndex < comicCapacity)
             {
                 if (magnetizeTimer <= 0f)
                 {
@@ -78,13 +81,23 @@ public class Interactable_Shelf : Interactable
         isInteracting = false;
     }
 
+    public void SetID(int id)
+    {
+        ID = id;
+    }
+
     public void TakeComic()
     {
-        ComicObjects[currentIndex].SetActive(true);
+        ComicObjects[CurrentIndex].SetActive(true);
 
-        currentIndex = Mathf.Clamp(currentIndex + 1, 0, comicCapacity);
+        CurrentIndex = Mathf.Clamp(CurrentIndex + 1, 0, comicCapacity);
 
-        if (currentIndex == comicCapacity)
+        if (CurrentIndex > 0)
+        {
+            GameManager.Instance.ShelfAvailable(ID);
+        }
+
+        if (CurrentIndex == comicCapacity)
         {
             ExitInteraction();
         }
@@ -92,11 +105,18 @@ public class Interactable_Shelf : Interactable
 
     public bool GiveComic()
     {
-        if (currentIndex > 0)
+        if (CurrentIndex > 0 && ReservedIndex > 0)
         {
-            currentIndex--;
+            CurrentIndex--;
+            ReservedIndex--;
 
-            ComicObjects[currentIndex].SetActive(false);
+            ComicObjects[CurrentIndex].SetActive(false);
+
+            if (CurrentIndex == 0)
+            {
+                ReservedIndex = 0;
+                GameManager.Instance.ShelfExpired(ID);
+            }
 
             return true;
         }
@@ -106,5 +126,8 @@ public class Interactable_Shelf : Interactable
         }
     }
 
-
+    public int GetAvailableComicCount()
+    {
+        return Mathf.Clamp(CurrentIndex - ReservedIndex, 0, comicCapacity);
+    }
 }
