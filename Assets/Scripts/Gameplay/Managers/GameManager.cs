@@ -21,8 +21,7 @@ public class GameManager : MonoBehaviour
 
     public Interactable_Truck Truck;
 
-    [SerializeField]
-    private List<Interactable_Shelf> Shelves;
+    public List<Interactable_Shelf> Shelves;
 
     [HideInInspector]
     public List<int> EmptyShelves;
@@ -31,6 +30,14 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector]
     public List<Customer> Customers;
+
+    public Transform[] CustomerLinePoints;
+    public Transform[] CustomerRegisterLinePoints;
+    public Transform[] CustomerExitPoints;
+    public Transform CustomerSpawnPoints;
+
+    [SerializeField]
+    private Interactable_Sales Sales;
 
 
     // Values
@@ -45,7 +52,12 @@ public class GameManager : MonoBehaviour
     private int availableComicCount;
 
     [SerializeField]
-    private int CustomerCapacity;
+    private int TotalCustomerCapacity;
+    [SerializeField]
+    private int InnerCustomerCapacity;
+
+    private int lineIndex;
+    private int registerLineIndex;
 
     private float customerSpawnDuration;
     private float customerSpawnTimer;
@@ -65,6 +77,9 @@ public class GameManager : MonoBehaviour
         Customers = new List<Customer>();
 
         availableComicCount = 0;
+
+        lineIndex = 0;
+        registerLineIndex = 0;
     }
 
     private void Start()
@@ -78,7 +93,7 @@ public class GameManager : MonoBehaviour
         {
             if (customerSpawnTimer <= 0f)
             {
-                if (AvailableShelves.Count > 0 && Customers.Count < availableComicCount && Customers.Count < CustomerCapacity)
+                if (AvailableShelves.Count > 0 && Customers.Count < availableComicCount && Customers.Count < TotalCustomerCapacity)
                 {
                     SpawnCustomer();
 
@@ -166,5 +181,23 @@ public class GameManager : MonoBehaviour
     private void SpawnCustomer()
     {
 
+    }
+
+    public int CustomerLined()
+    {
+        lineIndex = Mathf.Clamp(lineIndex + 1, 0, InnerCustomerCapacity - 1);
+        return lineIndex;
+    }
+
+    public void CustomerDelined()
+    {
+        lineIndex = Mathf.Clamp(lineIndex - 1, 0, InnerCustomerCapacity - 1);
+    }
+
+    public void CustomerLeft(int moneyAmount)
+    {
+        Sales.PurchaseComplete(moneyAmount);
+
+        
     }
 }

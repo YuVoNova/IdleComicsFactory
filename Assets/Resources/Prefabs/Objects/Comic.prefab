@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7345416954865593149}
   - component: {fileID: 527639506384132725}
+  - component: {fileID: 4018620310445878179}
   m_Layer: 0
   m_Name: Comic
   m_TagString: Untagged
@@ -45,6 +46,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 12
+--- !u!114 &4018620310445878179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1589045607316376030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c46cdc060d302047b2a88b480bd37c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 4879640217178068967}
+  bookRenderer: {fileID: 9134974276770629419}
+  material: {fileID: 2100000, guid: 00913e6cad913074281a72b75a429931, type: 2}
 --- !u!1001 &3214510426956232286
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -100,10 +116,24 @@ PrefabInstance:
       propertyPath: m_Name
       value: BookModel
       objectReference: {fileID: 0}
+    - target: {fileID: 8010719422091633081, guid: 8b0fe4aa9dfbfce4bb0efa07bd31ce8a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b0fe4aa9dfbfce4bb0efa07bd31ce8a, type: 3}
 --- !u!4 &9122301707701750907 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5910078552962988581, guid: 8b0fe4aa9dfbfce4bb0efa07bd31ce8a, type: 3}
+  m_PrefabInstance: {fileID: 3214510426956232286}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &9134974276770629419 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 5934001063836086645, guid: 8b0fe4aa9dfbfce4bb0efa07bd31ce8a, type: 3}
+  m_PrefabInstance: {fileID: 3214510426956232286}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4879640217178068967 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8010719422091633081, guid: 8b0fe4aa9dfbfce4bb0efa07bd31ce8a, type: 3}
   m_PrefabInstance: {fileID: 3214510426956232286}
   m_PrefabAsset: {fileID: 0}

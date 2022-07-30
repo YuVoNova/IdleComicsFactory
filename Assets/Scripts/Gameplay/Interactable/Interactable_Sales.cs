@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Interactable_Sales : Interactable
 {
+    [SerializeField]
+    private Interactable_MoneyArea MoneyArea;
+
     public override void ExitPreInteraction()
     {
         base.ExitPreInteraction();
@@ -16,5 +19,10 @@ public class Interactable_Sales : Interactable
         base.ExitInteraction();
 
         Player.Instance.IsOpenForSales = false;
+    }
+
+    public void PurchaseComplete(int amount)
+    {
+
     }
 }
