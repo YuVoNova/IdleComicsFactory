@@ -23,6 +23,6 @@ public class Interactable_Sales : Interactable
 
     public void PurchaseComplete(int amount)
     {
-
+        MoneyArea.SpawnMoney(amount);
     }
 }

@@ -30,19 +30,6 @@ public class PlayerComic : MonoBehaviour
         if (isMagnetized)
         {
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, Speed * Time.deltaTime);
-
-            if (Vector3.Distance(transform.position, targetPosition) < 0.2f)
-            {
-                //targetBooth.EnergyAcquired();
-
-                isMagnetized = false;
-
-                transform.localPosition = originPosition;
-
-                targetPosition = Vector3.zero;
-
-                gameObject.SetActive(false);
-            }
         }
     }
 
@@ -80,6 +67,8 @@ public class PlayerComic : MonoBehaviour
         transform.localRotation = originRotation;
 
         Collider.enabled = false;
+
+        targetPosition = Vector3.zero;
 
         gameObject.SetActive(false);
 

@@ -7,12 +7,14 @@ public class Interactable_Shelf : Interactable
     [SerializeField]
     private Transform ShelfTargetCollider;
 
+    public Transform ShelfCustomerPoint;
+
     [SerializeField]
     private GameObject[] ComicObjects;
 
-    [HideInInspector]
+    //[HideInInspector]
     public int CurrentIndex;
-    [HideInInspector]
+    //[HideInInspector]
     public int ReservedIndex;
     private int comicCapacity;
 
@@ -92,7 +94,9 @@ public class Interactable_Shelf : Interactable
 
         CurrentIndex = Mathf.Clamp(CurrentIndex + 1, 0, comicCapacity);
 
-        if (CurrentIndex > 0)
+        GameManager.Instance.ComicAvailable(ID);
+
+        if (CurrentIndex > ReservedIndex)
         {
             GameManager.Instance.ShelfAvailable(ID);
         }
@@ -129,5 +133,15 @@ public class Interactable_Shelf : Interactable
     public int GetAvailableComicCount()
     {
         return Mathf.Clamp(CurrentIndex - ReservedIndex, 0, comicCapacity);
+    }
+
+    public void Reserved()
+    {
+        ReservedIndex = Mathf.Clamp(ReservedIndex + 1, 0, CurrentIndex);
+
+        if (ReservedIndex == CurrentIndex)
+        {
+            GameManager.Instance.ShelfExpired(ID);
+        }
     }
 }

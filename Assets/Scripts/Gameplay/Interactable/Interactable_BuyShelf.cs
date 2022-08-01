@@ -27,10 +27,6 @@ public class Interactable_BuyShelf : Interactable
     protected override void Awake()
     {
         base.Awake();
-
-        Initialize();
-
-        UpdatePriceText();
     }
 
     public override void ExitPreInteraction()
@@ -122,6 +118,7 @@ public class Interactable_BuyShelf : Interactable
         }
         else
         {
+            UpdatePriceText();
             Shelf.SetActive(false);
         }
     }

@@ -49,6 +49,7 @@ MonoBehaviour:
   Duration: 0
   PreInteractionDuration: 0.25
   InteractionType: 0
+  MoneyArea: {fileID: 0}
 --- !u!65 &6213906600365308320
 BoxCollider:
   m_ObjectHideFlags: 0

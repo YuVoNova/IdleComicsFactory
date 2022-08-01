@@ -21,20 +21,28 @@ public class GameManager : MonoBehaviour
 
     public Interactable_Truck Truck;
 
+    [SerializeField]
+    private GameObject Level_1;
+
     public List<Interactable_Shelf> Shelves;
 
-    [HideInInspector]
+    //[HideInInspector]
     public List<int> EmptyShelves;
-    [HideInInspector]
+    //[HideInInspector]
     public List<int> AvailableShelves;
 
+    [SerializeField]
+    private GameObject CustomerPrefab;
+
     [HideInInspector]
-    public List<Customer> Customers;
+    public List<Customer> InsideCostumers;
+    [HideInInspector]
+    public List<Customer> OutsideCustomers;
 
     public Transform[] CustomerLinePoints;
     public Transform[] CustomerRegisterLinePoints;
     public Transform[] CustomerExitPoints;
-    public Transform CustomerSpawnPoints;
+    public Transform CustomerSpawnPoint;
 
     [SerializeField]
     private Interactable_Sales Sales;
@@ -50,16 +58,15 @@ public class GameManager : MonoBehaviour
     public bool OnMenu;
 
     private int availableComicCount;
+    private int registerLineCount;
 
     [SerializeField]
-    private int TotalCustomerCapacity;
+    private int InsideCustomerCapacity;
     [SerializeField]
-    private int InnerCustomerCapacity;
+    private int OutsideCustomerCapacity;
 
-    private int lineIndex;
-    private int registerLineIndex;
-
-    private float customerSpawnDuration;
+    [SerializeField]
+    private float CustomerSpawnDuration;
     private float customerSpawnTimer;
 
 
@@ -74,12 +81,24 @@ public class GameManager : MonoBehaviour
         IsGameOn = true;
         OnMenu = false;
 
-        Customers = new List<Customer>();
+        InsideCostumers = new List<Customer>();
+        OutsideCustomers = new List<Customer>();
 
         availableComicCount = 0;
+        registerLineCount = 0;
 
-        lineIndex = 0;
-        registerLineIndex = 0;
+        for (int i = 0; i < OutsideCustomerCapacity; i++)
+        {
+            SpawnCustomer(i, true);
+        }
+
+        Interactable_BuyShelf[] buyShelves = FindObjectsOfType<Interactable_BuyShelf>();
+        foreach (Interactable_BuyShelf buyShelf in buyShelves)
+        {
+            buyShelf.Initialize();
+        }
+
+        customerSpawnTimer = CustomerSpawnDuration;
     }
 
     private void Start()
@@ -93,12 +112,12 @@ public class GameManager : MonoBehaviour
         {
             if (customerSpawnTimer <= 0f)
             {
-                if (AvailableShelves.Count > 0 && Customers.Count < availableComicCount && Customers.Count < TotalCustomerCapacity)
+                if (AvailableShelves.Count > 0 && availableComicCount > 0 && InsideCostumers.Count < InsideCustomerCapacity)
                 {
-                    SpawnCustomer();
-
-                    customerSpawnTimer = customerSpawnDuration;
+                    EnableCustomer();
                 }
+
+                customerSpawnTimer = CustomerSpawnDuration;
             }
             else
             {
@@ -148,7 +167,7 @@ public class GameManager : MonoBehaviour
 
     public void EnableExpansion()
     {
-        // TO DO -> Enable expansion here.
+        Level_1.SetActive(true);
     }
 
     public void AddShelf(int id)
@@ -178,26 +197,75 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void SpawnCustomer()
+    public void ComicAvailable(int id)
     {
-
+        availableComicCount++;
     }
 
-    public int CustomerLined()
+    private void SpawnCustomer(int lineIndex, bool isInitial)
     {
-        lineIndex = Mathf.Clamp(lineIndex + 1, 0, InnerCustomerCapacity - 1);
-        return lineIndex;
+        Customer spawnedCustomer = Instantiate(CustomerPrefab, CustomerSpawnPoint.position, CustomerSpawnPoint.rotation).GetComponent<Customer>();
+        spawnedCustomer.Initialize(lineIndex);
+
+        if (isInitial)
+        {
+            spawnedCustomer.transform.position = CustomerLinePoints[lineIndex].position;
+        }
+
+        OutsideCustomers.Add(spawnedCustomer.GetComponent<Customer>());
     }
 
-    public void CustomerDelined()
+    private void EnableCustomer()
     {
-        lineIndex = Mathf.Clamp(lineIndex - 1, 0, InnerCustomerCapacity - 1);
+        int index = -1;
+
+        for (int i = 0; i < AvailableShelves.Count; i++)
+        {
+            if (Shelves[AvailableShelves[i]].GetAvailableComicCount() > 0)
+            {
+                index = AvailableShelves[i];
+                break;
+            }
+        }
+
+        if (index != -1)
+        {
+            availableComicCount = Mathf.Clamp(availableComicCount - 1, 0, InsideCustomerCapacity);
+            Shelves[index].Reserved();
+
+            OutsideCustomers[0].Enable(Shelves[index].ShelfCustomerPoint, index);
+
+            for (int i = 0; i < OutsideCustomers.Count; i++)
+            {
+                OutsideCustomers[i].LineChanged();
+            }
+
+            InsideCostumers.Add(OutsideCustomers[0]);
+            OutsideCustomers.RemoveAt(0);
+        }
+
+        SpawnCustomer(OutsideCustomerCapacity - 1, false);
     }
 
-    public void CustomerLeft(int moneyAmount)
+    public int GetRegisterLine()
+    {
+        int index = registerLineCount;
+        registerLineCount = Mathf.Clamp(registerLineCount + 1, 0, InsideCustomerCapacity);
+
+        return index;
+    }
+
+    public void CustomerLeft(Customer customer, int moneyAmount)
     {
         Sales.PurchaseComplete(moneyAmount);
 
-        
+        InsideCostumers.Remove(customer);
+
+        registerLineCount = Mathf.Clamp(registerLineCount - 1, 0, InsideCustomerCapacity);
+
+        for (int i = 0; i < InsideCostumers.Count; i++)
+        {
+            InsideCostumers[i].RegisterLineChanged();
+        }
     }
 }

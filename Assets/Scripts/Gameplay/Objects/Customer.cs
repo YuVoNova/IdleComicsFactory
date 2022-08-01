@@ -6,9 +6,6 @@ using UnityEngine.AI;
 public class Customer : MonoBehaviour
 {
     [HideInInspector]
-    public int ID;
-
-    [HideInInspector]
     public CustomerStates CurrentState;
 
     [SerializeField]
@@ -32,11 +29,17 @@ public class Customer : MonoBehaviour
     private int waitingRegisterLineIndex;
     private int exitIndex;
 
+    private Vector3 targetAngles;
     private Vector3 destinationPoint;
 
     [SerializeField]
     private float TakeComicDuration;
     private float takeComicTimer;
+
+    private void Awake()
+    {
+        targetAngles = Vector3.zero;
+    }
 
     private void Update()
     {
@@ -44,7 +47,7 @@ public class Customer : MonoBehaviour
         {
             case CustomerStates.Waiting_Line:
 
-                
+
 
                 break;
 
@@ -54,19 +57,16 @@ public class Customer : MonoBehaviour
                 {
                     if (Vector3.Distance(transform.position, destinationPoint) < StopDistance)
                     {
-                        CurrentState = CustomerStates.Waiting_Line;
+                        Agent.enabled = false;
 
                         //Animator.SetBool("isRunning", false);
 
-                        Agent.enabled = false;
+                        CurrentState = CustomerStates.Waiting_Line;
                     }
                 }
                 else
                 {
-                    destinationPoint = targetShelf.transform.position;
-                    Agent.SetDestination(destinationPoint);
 
-                    CurrentState = CustomerStates.Walking_Comic;
                 }
 
                 break;
@@ -75,26 +75,25 @@ public class Customer : MonoBehaviour
 
                 if (Vector3.Distance(transform.position, destinationPoint) < StopDistance)
                 {
-                    takeComicTimer = TakeComicDuration;
+                    if (Agent.enabled)
+                    {
+                        Agent.enabled = false;
 
-                    //Animator.SetBool("isRunning", false);
+                        transform.eulerAngles = Vector3.zero;
+                    }
 
-                    Agent.enabled = false;
-                }
-                else
-                {
                     if (takeComicTimer <= 0f)
                     {
                         GameManager.Instance.Shelves[shelfID].GiveComic();
                         ComicObject.SetActive(true);
 
-                        // TO DO -> Set waitingRegisterLineIndex here.
-
                         Agent.enabled = true;
 
                         //Animator.SetBool("isRunning", true);
 
-                        destinationPoint = GameManager.Instance.CustomerRegisterLinePoints[waitingRegisterLineIndex].transform.position;
+                        waitingRegisterLineIndex = GameManager.Instance.GetRegisterLine();
+
+                        destinationPoint = GameManager.Instance.CustomerRegisterLinePoints[waitingRegisterLineIndex].position;
                         Agent.SetDestination(destinationPoint);
 
                         CurrentState = CustomerStates.Walking_RegisterNextLine;
@@ -109,7 +108,7 @@ public class Customer : MonoBehaviour
 
             case CustomerStates.Waiting_RegisterLine:
 
-                if (Player.Instance.IsOpenForSales)
+                if (Player.Instance.IsOpenForSales && waitingRegisterLineIndex == 0)
                 {
                     Purchase();
                 }
@@ -120,11 +119,14 @@ public class Customer : MonoBehaviour
 
                 if (Vector3.Distance(transform.position, destinationPoint) < StopDistance)
                 {
-                    CurrentState = CustomerStates.Waiting_RegisterLine;
+                    Agent.enabled = false;
 
                     //Animator.SetBool("isRunning", false);
 
-                    Agent.enabled = false;
+                    CurrentState = CustomerStates.Waiting_RegisterLine;
+
+                    targetAngles.y = 90f;
+                    transform.eulerAngles = targetAngles;
                 }
 
                 break;
@@ -143,7 +145,10 @@ public class Customer : MonoBehaviour
                 }
                 else
                 {
-                    
+                    if (Vector3.Distance(transform.position, destinationPoint) < StopDistance)
+                    {
+                        Destroy(gameObject);
+                    }
                 }
 
                 break;
@@ -156,13 +161,22 @@ public class Customer : MonoBehaviour
         }
     }
 
-    public void Initialize(int shelfId, Transform shelfTransform, int lineIndex)
+    public void Initialize(int lineIndex)
     {
-        shelfID = shelfId;
-        targetShelf = shelfTransform;
         waitingLineIndex = lineIndex;
 
+        destinationPoint = GameManager.Instance.CustomerLinePoints[waitingLineIndex].position;
+        Agent.SetDestination(destinationPoint);
+
+        //Animator.SetBool("isRunning", true);
+
         CurrentState = CustomerStates.Walking_NextLine;
+    }
+
+    public void Enable(Transform shelf, int id)
+    {
+        targetShelf = shelf;
+        shelfID = id;
     }
 
     public void LineChanged()
@@ -174,22 +188,38 @@ public class Customer : MonoBehaviour
 
             //Animator.SetBool("isRunning", true);
 
-            destinationPoint = GameManager.Instance.CustomerLinePoints[waitingLineIndex].transform.position;
-            Agent.SetDestination(destinationPoint);
-
-            CurrentState = CustomerStates.Walking_NextLine;
-        }
-        else if (CurrentState == CustomerStates.Waiting_RegisterLine || CurrentState == CustomerStates.Walking_RegisterNextLine)
-        {
-            if (waitingRegisterLineIndex > 0)
+            if (waitingLineIndex == -1)
             {
-                waitingRegisterLineIndex = Mathf.Clamp(waitingLineIndex - 1, 0, 100);
+                takeComicTimer = TakeComicDuration;
 
-                destinationPoint = GameManager.Instance.CustomerRegisterLinePoints[waitingRegisterLineIndex].transform.position;
+                destinationPoint = targetShelf.transform.position;
                 Agent.SetDestination(destinationPoint);
 
-                CurrentState = CustomerStates.Walking_RegisterNextLine;
+                CurrentState = CustomerStates.Walking_Comic;
             }
+            else
+            {
+                destinationPoint = GameManager.Instance.CustomerLinePoints[waitingLineIndex].transform.position;
+                Agent.SetDestination(destinationPoint);
+
+                CurrentState = CustomerStates.Walking_NextLine;
+            }
+        }
+    }
+
+    public void RegisterLineChanged()
+    {
+        if (CurrentState == CustomerStates.Waiting_RegisterLine || CurrentState == CustomerStates.Walking_RegisterNextLine)
+        {
+            waitingRegisterLineIndex = Mathf.Clamp(waitingRegisterLineIndex - 1, 0, 100);
+            Agent.enabled = true;
+
+            //Animator.SetBool("isRunning", true);
+
+            destinationPoint = GameManager.Instance.CustomerRegisterLinePoints[waitingRegisterLineIndex].transform.position;
+            Agent.SetDestination(destinationPoint);
+
+            CurrentState = CustomerStates.Walking_RegisterNextLine;
         }
     }
 
@@ -197,7 +227,7 @@ public class Customer : MonoBehaviour
     {
         exitIndex = 0;
 
-        GameManager.Instance.CustomerLeft(MoneyAmount);
+        GameManager.Instance.CustomerLeft(this, MoneyAmount);
 
         Agent.enabled = true;
 
