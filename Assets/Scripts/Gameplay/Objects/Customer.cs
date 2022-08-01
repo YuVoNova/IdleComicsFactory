@@ -36,9 +36,15 @@ public class Customer : MonoBehaviour
     private float TakeComicDuration;
     private float takeComicTimer;
 
+    [SerializeField]
+    private float PurchaseDuration;
+    private float purchaseTimer;
+
     private void Awake()
     {
         targetAngles = Vector3.zero;
+
+        purchaseTimer = PurchaseDuration;
     }
 
     private void Update()
@@ -108,9 +114,16 @@ public class Customer : MonoBehaviour
 
             case CustomerStates.Waiting_RegisterLine:
 
-                if (Player.Instance.IsOpenForSales && waitingRegisterLineIndex == 0)
+                if (purchaseTimer <= 0f)
                 {
-                    Purchase();
+                    if (Player.Instance.IsOpenForSales && waitingRegisterLineIndex == 0)
+                    {
+                        Purchase();
+                    }
+                }
+                else
+                {
+                    purchaseTimer -= Time.deltaTime;
                 }
 
                 break;

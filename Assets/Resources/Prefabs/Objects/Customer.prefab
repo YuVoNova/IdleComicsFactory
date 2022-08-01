@@ -52,6 +52,7 @@ MonoBehaviour:
   MoneyAmount: 5
   ComicObject: {fileID: 2216672061440503077}
   TakeComicDuration: 0.6
+  PurchaseDuration: 0.6
 --- !u!195 &2216672060075134465
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -31,7 +31,7 @@ public class Interactable_BuyExpansion : Interactable
     {
         base.ExitPreInteraction();
 
-        if (currentPrice != 0)
+        if (currentPrice != 0 && Manager.Instance.PlayerData.Money > 0)
         {
             Player.Instance.MoneyFlow.StartFlow(Player.Instance.transform, transform);
         }

@@ -103,7 +103,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-
+        RebuildNavMesh();
     }
 
     private void Update()
@@ -143,7 +143,7 @@ public class GameManager : MonoBehaviour
     {
         Manager.Instance.PlayerData.Money += Mathf.FloorToInt(amount);
 
-        //UIManager.Instance.UpdateMoneyText();
+        UIManager.Instance.UpdateMoneyText();
 
         //Player.Instance.AudioSource.volume = 0.5f;
         //Player.Instance.AudioSource.clip = Manager.Instance.Audios["Money"];
@@ -156,7 +156,7 @@ public class GameManager : MonoBehaviour
     {
         Manager.Instance.PlayerData.Money = Mathf.FloorToInt(Mathf.Clamp(Manager.Instance.PlayerData.Money - amount, 0f, float.MaxValue));
 
-        //UIManager.Instance.UpdateMoneyText();
+        UIManager.Instance.UpdateMoneyText();
 
         //Player.Instance.AudioSource.volume = 0.5f;
         //Player.Instance.AudioSource.clip = Manager.Instance.Audios["Money"];
@@ -168,6 +168,8 @@ public class GameManager : MonoBehaviour
     public void EnableExpansion()
     {
         Level_1.SetActive(true);
+
+        RebuildNavMesh();
     }
 
     public void AddShelf(int id)

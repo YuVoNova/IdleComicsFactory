@@ -34,7 +34,7 @@ public class Interactable_BuyMachine : Interactable
     {
         base.ExitPreInteraction();
 
-        if (currentPrice != 0)
+        if (currentPrice != 0 && Manager.Instance.PlayerData.Money > 0)
         {
             Player.Instance.MoneyFlow.StartFlow(Player.Instance.transform, transform);
         }
@@ -104,6 +104,8 @@ public class Interactable_BuyMachine : Interactable
         Machine.SetActive(true);
 
         gameObject.SetActive(false);
+
+        GameManager.Instance.RebuildNavMesh();
     }
 
     public void Initialize()
