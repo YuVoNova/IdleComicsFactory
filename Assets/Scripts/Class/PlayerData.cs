@@ -4,6 +4,6 @@ public class PlayerData
 
     public PlayerData()
     {
-        Money = 1000;
+        Money = 0;
     }
 }

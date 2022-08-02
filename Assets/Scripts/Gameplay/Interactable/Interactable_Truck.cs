@@ -136,7 +136,7 @@ public class Interactable_Truck : Interactable
 
         Animator.SetBool("isOpen", false);
 
-        MoneyArea.SpawnMoney(currentIndex);
+        MoneyArea.SpawnMoney(currentIndex * AmountPerSale);
 
         yield return new WaitForSeconds(0.25f);
 

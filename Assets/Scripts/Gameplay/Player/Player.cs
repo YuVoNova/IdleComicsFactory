@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 
 public class Player : MonoBehaviour
 {
@@ -25,6 +26,9 @@ public class Player : MonoBehaviour
 
     public AudioSource AudioSource;
 
+    [SerializeField]
+    private Rig Rig;
+
 
     // Values
 
@@ -48,11 +52,13 @@ public class Player : MonoBehaviour
         currentComicCount = 0;
 
         AvailableForComics = true;
+
+        Rig.weight = 0f;
     }
 
     private void Start()
     {
-
+        
     }
 
     private void Update()
@@ -85,6 +91,11 @@ public class Player : MonoBehaviour
 
         currentComicCount++;
 
+        if (Rig.weight < 1f)
+        {
+            Rig.weight = 1f;
+        }
+
         /*
         AudioSource.volume = 0.4f;
         AudioSource.clip = Manager.Instance.Audios["EnergyPickup"];
@@ -116,6 +127,11 @@ public class Player : MonoBehaviour
             if (currentComicCount < ComicCapacity)
             {
                 AvailableForComics = true;
+            }
+
+            if (currentComicCount == 0)
+            {
+                Rig.weight = 0f;
             }
 
             return true;

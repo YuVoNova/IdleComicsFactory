@@ -21,13 +21,13 @@ public class UIManager : MonoBehaviour
     {
         Instance = this;
 
-        //UpdateMoneyText();
+        UpdateMoneyText();
     }
 
     // Methods
 
     public void UpdateMoneyText()
     {
-        //MoneyText.text = "" + Manager.Instance.PlayerData.Money;
+        MoneyText.text = "" + Manager.Instance.PlayerData.Money;
     }
 }

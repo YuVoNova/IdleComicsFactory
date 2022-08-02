@@ -146,9 +146,9 @@ public class GameManager : MonoBehaviour
 
         UIManager.Instance.UpdateMoneyText();
 
-        //Player.Instance.AudioSource.volume = 0.5f;
-        //Player.Instance.AudioSource.clip = Manager.Instance.Audios["Money"];
-        //Player.Instance.AudioSource.Play();
+        Player.Instance.AudioSource.volume = 0.5f;
+        Player.Instance.AudioSource.clip = Manager.Instance.Audios["Money"];
+        Player.Instance.AudioSource.Play();
 
         Manager.Instance.Save();
     }
@@ -159,9 +159,9 @@ public class GameManager : MonoBehaviour
 
         UIManager.Instance.UpdateMoneyText();
 
-        //Player.Instance.AudioSource.volume = 0.5f;
-        //Player.Instance.AudioSource.clip = Manager.Instance.Audios["Money"];
-        //Player.Instance.AudioSource.Play();
+        Player.Instance.AudioSource.volume = 0.5f;
+        Player.Instance.AudioSource.clip = Manager.Instance.Audios["Money"];
+        Player.Instance.AudioSource.Play();
 
         Manager.Instance.Save();
     }
