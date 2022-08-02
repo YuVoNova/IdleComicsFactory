@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
                             clickFlag = false;
                             isJoystickActive = true;
 
-                            //Player.Instance.Animator.SetBool("isRunning", true);
+                            Player.Instance.Animator.SetBool("isRunning", true);
                         }
 
                         if (delta.magnitude > clickTreshold)
@@ -86,13 +86,13 @@ public class PlayerController : MonoBehaviour
                         clickFlag = false;
                         isJoystickActive = false;
 
-                        //Player.Instance.Animator.SetBool("isRunning", false);
+                        Player.Instance.Animator.SetBool("isRunning", false);
 
                     }
                 }
                 else
                 {
-                    //Player.Instance.Animator.SetBool("isRunning", false);
+                    Player.Instance.Animator.SetBool("isRunning", false);
 
                     direction = transform.forward;
                 }

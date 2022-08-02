@@ -65,7 +65,7 @@ public class Customer : MonoBehaviour
                     {
                         Agent.enabled = false;
 
-                        //Animator.SetBool("isRunning", false);
+                        Animator.SetBool("isRunning", false);
 
                         CurrentState = CustomerStates.Waiting_Line;
                     }
@@ -85,6 +85,8 @@ public class Customer : MonoBehaviour
                     {
                         Agent.enabled = false;
 
+                        Animator.SetBool("isRunning", false);
+
                         transform.eulerAngles = Vector3.zero;
                     }
 
@@ -95,7 +97,7 @@ public class Customer : MonoBehaviour
 
                         Agent.enabled = true;
 
-                        //Animator.SetBool("isRunning", true);
+                        Animator.SetBool("isRunning", true);
 
                         waitingRegisterLineIndex = GameManager.Instance.GetRegisterLine();
 
@@ -134,7 +136,7 @@ public class Customer : MonoBehaviour
                 {
                     Agent.enabled = false;
 
-                    //Animator.SetBool("isRunning", false);
+                    Animator.SetBool("isRunning", false);
 
                     CurrentState = CustomerStates.Waiting_RegisterLine;
 
@@ -181,7 +183,7 @@ public class Customer : MonoBehaviour
         destinationPoint = GameManager.Instance.CustomerLinePoints[waitingLineIndex].position;
         Agent.SetDestination(destinationPoint);
 
-        //Animator.SetBool("isRunning", true);
+        Animator.SetBool("isRunning", true);
 
         CurrentState = CustomerStates.Walking_NextLine;
     }
@@ -199,7 +201,7 @@ public class Customer : MonoBehaviour
             waitingLineIndex = Mathf.Clamp(waitingLineIndex - 1, -1, 100);
             Agent.enabled = true;
 
-            //Animator.SetBool("isRunning", true);
+            Animator.SetBool("isRunning", true);
 
             if (waitingLineIndex == -1)
             {
@@ -227,7 +229,7 @@ public class Customer : MonoBehaviour
             waitingRegisterLineIndex = Mathf.Clamp(waitingRegisterLineIndex - 1, 0, 100);
             Agent.enabled = true;
 
-            //Animator.SetBool("isRunning", true);
+            Animator.SetBool("isRunning", true);
 
             destinationPoint = GameManager.Instance.CustomerRegisterLinePoints[waitingRegisterLineIndex].transform.position;
             Agent.SetDestination(destinationPoint);
@@ -244,7 +246,7 @@ public class Customer : MonoBehaviour
 
         Agent.enabled = true;
 
-        //Animator.SetBool("isRunning", true);
+        Animator.SetBool("isRunning", true);
 
         destinationPoint = GameManager.Instance.CustomerExitPoints[exitIndex].position;
         Agent.SetDestination(destinationPoint);
