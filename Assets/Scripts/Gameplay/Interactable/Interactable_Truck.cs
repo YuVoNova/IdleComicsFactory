@@ -7,6 +7,9 @@ public class Interactable_Truck : Interactable
     private Interactable_MoneyArea MoneyArea;
 
     [SerializeField]
+    private Animator Animator;
+
+    [SerializeField]
     private Transform TruckTargetCollider;
 
     [SerializeField]
@@ -61,6 +64,8 @@ public class Interactable_Truck : Interactable
     private void Start()
     {
         truckCapacity = Player.Instance.ComicCapacity;
+
+        Animator.SetBool("isOpen", true);
     }
 
     protected override void Update()
@@ -129,7 +134,7 @@ public class Interactable_Truck : Interactable
     {
         yield return new WaitForSeconds(MoveTruckDuration);
 
-        // TO DO -> Play "Close Gates" animation for truck.
+        Animator.SetBool("isOpen", false);
 
         MoneyArea.SpawnMoney(currentIndex);
 
@@ -158,7 +163,7 @@ public class Interactable_Truck : Interactable
             yield return null;
         }
 
-        // TO DO -> Play "Open Gates" animation for truck.
+        Animator.SetBool("isOpen", true);
 
         currentIndex = 0;
 

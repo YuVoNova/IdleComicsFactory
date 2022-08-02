@@ -171,6 +171,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9162376273333571851, guid: b5e6873b2c092374e940cb6add7aa009, type: 3}
   m_PrefabInstance: {fileID: 2998011485523290223}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &6247608140824797112 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9162825296126900183, guid: b5e6873b2c092374e940cb6add7aa009, type: 3}
+  m_PrefabInstance: {fileID: 2998011485523290223}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8840681312484564583 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5993019379384301064, guid: b5e6873b2c092374e940cb6add7aa009, type: 3}
@@ -272,6 +277,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6498058261644828874, guid: 05fb67204150e7341aa38e568c41d198, type: 3}
+      propertyPath: Animator
+      value: 
+      objectReference: {fileID: 6247608140824797112}
     - target: {fileID: 6498058261644828874, guid: 05fb67204150e7341aa38e568c41d198, type: 3}
       propertyPath: MoneyArea
       value: 

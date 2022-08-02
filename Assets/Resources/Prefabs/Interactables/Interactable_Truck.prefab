@@ -49,6 +49,7 @@ MonoBehaviour:
   PreInteractionDuration: 0.25
   InteractionType: 0
   MoneyArea: {fileID: 0}
+  Animator: {fileID: 0}
   TruckTargetCollider: {fileID: 0}
   TruckTransform: {fileID: 0}
   TruckArrivalPoint: {fileID: 0}
@@ -63,7 +64,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  AmountPerSale: 2
+  AmountPerSale: 7
   MagnetizeDuration: 0.25
   MoveTruckDuration: 0.75
   MinSpeed: 3

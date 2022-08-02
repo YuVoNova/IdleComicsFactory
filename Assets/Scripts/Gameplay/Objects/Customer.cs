@@ -116,16 +116,16 @@ public class Customer : MonoBehaviour
 
             case CustomerStates.Waiting_RegisterLine:
 
-                if (purchaseTimer <= 0f)
+                if (Player.Instance.IsOpenForSales && waitingRegisterLineIndex == 0)
                 {
-                    if (Player.Instance.IsOpenForSales && waitingRegisterLineIndex == 0)
+                    if (purchaseTimer <= 0f)
                     {
                         Purchase();
                     }
-                }
-                else
-                {
-                    purchaseTimer -= Time.deltaTime;
+                    else
+                    {
+                        purchaseTimer -= Time.deltaTime;
+                    }
                 }
 
                 break;

@@ -28,6 +28,6 @@ public class UIManager : MonoBehaviour
 
     public void UpdateMoneyText()
     {
-        MoneyText.text = "" + Manager.Instance.PlayerData.Money;
+        //MoneyText.text = "" + Manager.Instance.PlayerData.Money;
     }
 }

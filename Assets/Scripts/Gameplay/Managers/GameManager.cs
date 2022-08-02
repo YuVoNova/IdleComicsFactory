@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject Level_1;
 
+    [SerializeField]
+    private Interactable_BuyShelf[] BuyShelves;
     public List<Interactable_Shelf> Shelves;
 
     //[HideInInspector]
@@ -92,10 +94,9 @@ public class GameManager : MonoBehaviour
             SpawnCustomer(i, true);
         }
 
-        Interactable_BuyShelf[] buyShelves = FindObjectsOfType<Interactable_BuyShelf>();
-        foreach (Interactable_BuyShelf buyShelf in buyShelves)
+        for (int i = 0; i < BuyShelves.Length; i++)
         {
-            buyShelf.Initialize();
+            BuyShelves[i].Initialize();
         }
 
         customerSpawnTimer = CustomerSpawnDuration;

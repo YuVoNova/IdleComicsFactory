@@ -30,6 +30,11 @@ public class Interactable_BuyMachine : Interactable
         UpdatePriceText();
     }
 
+    private void Start()
+    {
+        GameManager.Instance.RebuildNavMesh();
+    }
+
     public override void ExitPreInteraction()
     {
         base.ExitPreInteraction();
@@ -104,8 +109,6 @@ public class Interactable_BuyMachine : Interactable
         Machine.SetActive(true);
 
         gameObject.SetActive(false);
-
-        GameManager.Instance.RebuildNavMesh();
     }
 
     public void Initialize()
