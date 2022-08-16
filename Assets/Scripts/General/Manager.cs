@@ -1,8 +1,7 @@
 using System.IO;
 using System.Collections.Generic;
 using UnityEngine;
-//using GameAnalyticsSDK;
-//using Facebook.Unity;
+using Facebook.Unity;
 
 public class Manager : MonoBehaviour
 {
@@ -87,9 +86,6 @@ public class Manager : MonoBehaviour
 
     private void InitializeSDK()
     {
-        /*
-        GameAnalytics.Initialize();
-
         if (FB.IsInitialized)
         {
             FB.ActivateApp();
@@ -98,7 +94,6 @@ public class Manager : MonoBehaviour
         {
             FB.Init(() => { FB.ActivateApp(); });
         }
-        */
     }
 
     private void InitializeSounds()
