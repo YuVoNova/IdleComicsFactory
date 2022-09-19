@@ -31,7 +31,7 @@ public class TTPPrivacySettingsPostProcess
             }
         }
 #endif
-        string attText = "By pressing \"Allow\" we will be able to provide you personalized ads.";
+        string attText = "Your device data will only be used to show you relevant ads";
         var additionalConfigPath =
             "Assets/StreamingAssets/ttp/configurations/additionalConfig.json";
         if (File.Exists(additionalConfigPath))

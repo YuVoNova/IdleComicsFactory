@@ -3,7 +3,7 @@
 --- !u!129 &1
 PlayerSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 22
+  serializedVersion: 23
   productGUID: 4fb4abc544b503d4297cff6b383a5d55
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
@@ -136,7 +136,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 0.2
+  bundleVersion: 0.3
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -147,6 +147,7 @@ PlayerSettings:
     enable360StereoCapture: 0
   isWsaHolographicRemotingEnabled: 0
   enableFrameTimingStats: 0
+  enableOpenGLProfilerGPURecorders: 1
   useHDRDisplay: 0
   D3DHDRBitDepth: 0
   m_ColorGamuts: 0000000003000000
@@ -163,9 +164,9 @@ PlayerSettings:
     iPhone: 0
     tvOS: 0
   overrideDefaultApplicationIdentifier: 0
-  AndroidBundleVersionCode: 1
-  AndroidMinSdkVersion: 19
-  AndroidTargetSdkVersion: 0
+  AndroidBundleVersionCode: 2
+  AndroidMinSdkVersion: 23
+  AndroidTargetSdkVersion: 30
   AndroidPreferredInstallLocation: 1
   aotOptions: 
   stripEngineCode: 1
@@ -220,6 +221,7 @@ PlayerSettings:
   iOSLaunchScreeniPadCustomStoryboardPath: 
   iOSDeviceRequirements: []
   iOSURLSchemes: []
+  macOSURLSchemes: []
   iOSBackgroundModes: 0
   iOSMetalForceHardShadows: 0
   metalEditorSupport: 1
@@ -239,11 +241,11 @@ PlayerSettings:
   clonedFromGUID: 9870af204204ab84596f8a656f2f2ce6
   templatePackageId: com.unity.template.universal@10.9.1
   templateDefaultScene: Assets/Scenes/SampleScene.unity
-  useCustomMainManifest: 1
+  useCustomMainManifest: 0
   useCustomLauncherManifest: 0
-  useCustomMainGradleTemplate: 0
-  useCustomLauncherGradleManifest: 0
-  useCustomBaseGradleTemplate: 0
+  useCustomMainGradleTemplate: 1
+  useCustomLauncherGradleManifest: 1
+  useCustomBaseGradleTemplate: 1
   useCustomGradlePropertiesTemplate: 0
   useCustomProguardFile: 0
   AndroidTargetArchitectures: 3
@@ -428,7 +430,7 @@ PlayerSettings:
     m_Automatic: 1
   - m_BuildTarget: AndroidPlayer
     m_APIs: 150000000b000000
-    m_Automatic: 0
+    m_Automatic: 1
   - m_BuildTarget: WebGLSupport
     m_APIs: 0b000000
     m_Automatic: 0
@@ -446,6 +448,7 @@ PlayerSettings:
     m_EncodingQuality: 1
   m_BuildTargetGroupLightmapSettings: []
   m_BuildTargetNormalMapEncoding: []
+  m_BuildTargetDefaultTextureCompressionFormat: []
   playModeTestRunnerEnabled: 0
   runPlayModeTestAsEditModeTest: 0
   actionOnDotNetUnhandledException: 1
@@ -464,6 +467,7 @@ PlayerSettings:
   switchScreenResolutionBehavior: 2
   switchUseCPUProfiler: 0
   switchUseGOLDLinker: 0
+  switchLTOSetting: 0
   switchApplicationID: 0x01004b9000490000
   switchNSODependencies: 
   switchTitleNames_0: 
@@ -704,8 +708,8 @@ PlayerSettings:
   webGLThreadsSupport: 0
   webGLDecompressionFallback: 0
   scriptingDefineSymbols:
-    4: TTP_REWARDED_INTERSTITIALS;TTP_PRIVACY_SETTINGS;TTP_APPSFLYER;TTP_REWARDED_ADS;TTP_PROMOTION;TTP_INTERSTITIALS;TTP_ANALYTICS;TTP_GAMEPROGRESSION;TTP_RATEUS;TTP_BANNERS;TTP_POPUPMGR;TTP_CRASHTOOL;TTP_OPENADS
-    7: TTP_REWARDED_INTERSTITIALS;TTP_PRIVACY_SETTINGS;TTP_APPSFLYER;TTP_REWARDED_ADS;TTP_PROMOTION;TTP_INTERSTITIALS;TTP_ANALYTICS;TTP_GAMEPROGRESSION;TTP_RATEUS;TTP_BANNERS;TTP_POPUPMGR;TTP_CRASHTOOL;TTP_OPENADS
+    Android: TTP_REWARDED_INTERSTITIALS;TTP_PRIVACY_SETTINGS;TTP_APPSFLYER;TTP_REWARDED_ADS;TTP_PROMOTION;TTP_INTERSTITIALS;TTP_ANALYTICS;TTP_GAMEPROGRESSION;TTP_RATEUS;TTP_BANNERS;TTP_POPUPMGR;TTP_CRASHTOOL;TTP_OPENADS
+    iPhone: TTP_REWARDED_INTERSTITIALS;TTP_PRIVACY_SETTINGS;TTP_APPSFLYER;TTP_REWARDED_ADS;TTP_PROMOTION;TTP_INTERSTITIALS;TTP_ANALYTICS;TTP_GAMEPROGRESSION;TTP_RATEUS;TTP_BANNERS;TTP_POPUPMGR;TTP_CRASHTOOL;TTP_OPENADS
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
@@ -717,7 +721,6 @@ PlayerSettings:
   suppressCommonWarnings: 1
   allowUnsafeCode: 0
   useDeterministicCompilation: 1
-  useReferenceAssemblies: 1
   enableRoslynAnalyzers: 1
   additionalIl2CppArgs: 
   scriptingRuntimeVersion: 1
@@ -805,4 +808,6 @@ PlayerSettings:
   organizationId: 
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
+  playerDataPath: 
+  forceSRGBBlit: 1
   virtualTexturingSupportEnabled: 0

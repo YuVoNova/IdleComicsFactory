@@ -17,7 +17,7 @@ namespace Tabtale.TTPlugins
         private const string STRICT_MODE_JSON_FN = "androidStrictMode";
         private const string ADDITIONAL_CONFIG_JSON_FN = "additionalConfig";
         
-#if UNITY_ANDROID
+#if UNITY_ANDROID && !UNITY_2021_1_OR_NEWER
         public const string CONFIGURATIONS_PATH = "Assets/Plugins/Android/assets/ttp/configurations";
 #else
         public const string CONFIGURATIONS_PATH = "Assets/StreamingAssets/ttp/configurations";

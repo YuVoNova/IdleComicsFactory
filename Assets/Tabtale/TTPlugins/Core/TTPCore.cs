@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using UnityEngine.Scripting;
 
 #if UNITY_IOS
@@ -161,6 +162,9 @@ namespace Tabtale.TTPlugins {
                     else 
                     {
                         Debug.Log("TTPCore::Setup: shouldn't ask for IDFA");
+#if TTP_ANALYTICS
+                        SendAttDidShowAnalyticsEvent();
+#endif
                     }
                 }
 #endif
@@ -189,6 +193,46 @@ namespace Tabtale.TTPlugins {
             }
         }
 
+#if TTP_ANALYTICS
+        private const string attDidShowKey = "attDidShow";
+#if UNITY_IOS
+        [DllImport("__Internal")]
+        private static extern bool ttpGetAttDidShowFlag();
+        [DllImport("__Internal")]
+        private static extern void ttpSetAttDidShowFlag();
+#endif
+        private static void SendAttDidShowAnalyticsEvent()
+        {
+#if UNITY_IOS
+            if (ttpGetAttDidShowFlag())
+            {
+                return;
+            }
+            Debug.Log("TTPCore::SendAttDidShowAnalyticsEvent:");
+            System.Type analytics = System.Type.GetType("Tabtale.TTPlugins.TTPAnalytics");
+            if (analytics != null)
+            {
+                MethodInfo method = analytics.GetMethod("AttDidShow", BindingFlags.NonPublic | BindingFlags.Static);
+                if (method != null)
+                {
+                    Dictionary<string, object> addParams = new Dictionary<string, object>();
+                    addParams["result"] = "restricted";
+                    method.Invoke(null, new object[] { addParams });
+                }
+                else
+                {
+                    Debug.LogWarning("TTPCore::SendAttDidShowAnalyticsEvent: method AttDidShow not found");
+                }
+            }
+            else
+            {
+                Debug.Log("TTPCore::SendAttDidShowAnalyticsEvent: TTPAnalytics not found");
+            }
+            ttpSetAttDidShowFlag();
+#endif
+        }
+#endif
+        
 #if TTP_OPENADS && TTP_DEV_MODE
         private static void NotifyOpenAdsFinished()
         {

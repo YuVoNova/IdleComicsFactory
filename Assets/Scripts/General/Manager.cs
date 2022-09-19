@@ -1,7 +1,7 @@
+using Tabtale.TTPlugins;
 using System.IO;
 using System.Collections.Generic;
 using UnityEngine;
-using Facebook.Unity;
 
 public class Manager : MonoBehaviour
 {
@@ -86,14 +86,7 @@ public class Manager : MonoBehaviour
 
     private void InitializeSDK()
     {
-        if (FB.IsInitialized)
-        {
-            FB.ActivateApp();
-        }
-        else
-        {
-            FB.Init(() => { FB.ActivateApp(); });
-        }
+        TTPCore.Setup();
     }
 
     private void InitializeSounds()

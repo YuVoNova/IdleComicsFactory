@@ -25,7 +25,7 @@ namespace Tabtale.TTPlugins
         private const string APPTESTING_DOMAIN = "http://apptesting-ttplugins.ttpsdk-staging.info";
         private const string APPTESTING_APPSDB_DOMAIN = "http://tt-apptesting-appsdb.us-west-2.elasticbeanstalk.com";
 
-#if UNITY_ANDROID
+#if UNITY_ANDROID && !UNITY_2021_1_OR_NEWER
         private const string CONFIGURATIONS_PATH = "Assets/Plugins/Android/assets/ttp/configurations";
 #else
         private const string CONFIGURATIONS_PATH = "Assets/StreamingAssets/ttp/configurations";

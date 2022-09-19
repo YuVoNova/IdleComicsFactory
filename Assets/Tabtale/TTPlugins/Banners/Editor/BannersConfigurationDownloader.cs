@@ -17,7 +17,7 @@ namespace Tabtale.TTPlugins
         private const string BANNERS_URL_ADDITION = "/banners/";
         private const string BANNERS_JSON_FN = "banners";
         private const string BANNERS_HOUSE_ADS_URL_ADDITION = "/houseads/";
-#if UNITY_ANDROID
+#if UNITY_ANDROID && !UNITY_2021_1_OR_NEWER
          private const string BANNER_ZIP_PATH = "Assets/Plugins/Android/assets/ttp/houseads/houseads.zip";
 #else
          private const string BANNER_ZIP_PATH = "Assets/StreamingAssets/ttp/houseads/houseads.zip";

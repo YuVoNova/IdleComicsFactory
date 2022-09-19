@@ -5,6 +5,11 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rigidbody;
 
     [SerializeField]
+    private GameObject Joystick;
+    [SerializeField]
+    private RectTransform Handle;
+
+    [SerializeField]
     private float clickTreshold;
     [SerializeField]
     private float dragMultiply;
@@ -24,6 +29,9 @@ public class PlayerController : MonoBehaviour
 
     private Quaternion targetRotation;
 
+    private Vector2 handleRadius;
+    private Vector2 handleDirection;
+
     [SerializeField]
     private float MovementSpeed;
 
@@ -32,8 +40,13 @@ public class PlayerController : MonoBehaviour
     {
         rigidbody = GetComponent<Rigidbody>();
 
+        Joystick.SetActive(false);
+
         direction = Vector3.zero;
         targetDirection = Vector3.zero;
+
+        handleRadius = Joystick.GetComponent<RectTransform>().sizeDelta / 2f;
+        handleDirection = Vector2.zero;
 
         clickFlag = false;
         isJoystickActive = false;
@@ -54,6 +67,8 @@ public class PlayerController : MonoBehaviour
 
                     if (touch.phase == TouchPhase.Began)
                     {
+                        Joystick.SetActive(true);
+
                         clickFlag = true;
                         isJoystickActive = false;
                     }
@@ -74,6 +89,12 @@ public class PlayerController : MonoBehaviour
                             direction2D = touch.position - clickCenter;
                             direction = new Vector3(direction2D.x, 0.0f, direction2D.y);
                             direction = Vector3.Normalize(direction);
+
+                            handleDirection = direction2D / 100f;
+                            if (handleDirection.magnitude > 1f)
+                            {
+                                handleDirection = handleDirection.normalized;
+                            }
                         }
                     }
                     else if (touch.phase == TouchPhase.Ended)
@@ -82,6 +103,9 @@ public class PlayerController : MonoBehaviour
                         {
                             Click(touch);
                         }
+
+                        Handle.anchoredPosition = Vector2.zero;
+                        Joystick.SetActive(false);
 
                         clickFlag = false;
                         isJoystickActive = false;
@@ -112,6 +136,8 @@ public class PlayerController : MonoBehaviour
 
             if (isJoystickActive)
             {
+                Handle.anchoredPosition = handleDirection * handleRadius;
+
                 direction.y = 0f;
                 rigidbody.velocity = direction * MovementSpeed * Time.fixedDeltaTime;
             }

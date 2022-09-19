@@ -3,13 +3,28 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.tabtale.tt_plugins.android</groupId>
   <artifactId>TT_Plugins</artifactId>
-  <version>3.8.0.6.2</version>
+  <version>3.9.0.1.6</version>
   <packaging>pom</packaging>
   <dependencies>
     <dependency>
       <groupId>com.tabtale.tt_plugins.android</groupId>
+      <artifactId>TT_Plugins_Analytics</artifactId>
+      <version>3.9.0.1.1</version>
+    </dependency>
+    <dependency>
+      <groupId>com.tabtale.tt_plugins.android</groupId>
+      <artifactId>TT_Plugins_AppsFlyer</artifactId>
+      <version>3.9.0.0.1</version>
+    </dependency>
+    <dependency>
+      <groupId>com.tabtale.tt_plugins.android</groupId>
       <artifactId>TT_Plugins_Billing</artifactId>
-      <version>0.0.0.0.115</version>
+      <version>0.0.0.0.116</version>
+    </dependency>
+    <dependency>
+      <groupId>com.tabtale.tt_plugins.android</groupId>
+      <artifactId>TT_Plugins_Core</artifactId>
+      <version>3.9.0.1.2</version>
     </dependency>
     <dependency>
       <groupId>com.tabtale.tt_plugins.android</groupId>
@@ -44,17 +59,17 @@
     <dependency>
       <groupId>com.tabtale.tt_plugins.android</groupId>
       <artifactId>TT_Plugins_OpenAds</artifactId>
-      <version>3.8.0.5.1</version>
+      <version>0.0.0.0.140</version>
     </dependency>
     <dependency>
       <groupId>com.tabtale.tt_plugins.android</groupId>
       <artifactId>TT_Plugins_PopupMgr</artifactId>
-      <version>0.0.0.0.104</version>
+      <version>0.0.0.0.105</version>
     </dependency>
     <dependency>
       <groupId>com.tabtale.tt_plugins.android</groupId>
       <artifactId>TT_Plugins_Privacy_Settings</artifactId>
-      <version>0.0.0.0.429</version>
+      <version>3.9.0.0.1</version>
     </dependency>
     <dependency>
       <groupId>com.tabtale.tt_plugins.android</groupId>
@@ -65,11 +80,6 @@
       <groupId>com.tabtale.tt_plugins.android</groupId>
       <artifactId>TT_Plugins_Remote_Config</artifactId>
       <version>0.0.0.0.42</version>
-    </dependency>
-    <dependency>
-      <groupId>com.tabtale.tt_plugins.android</groupId>
-      <artifactId>TT_Plugins_RewardedInterstitials</artifactId>
-      <version>3.8.0.5.1</version>
     </dependency>
     <dependency>
       <groupId>com.tabtale.tt_plugins.android</groupId>
@@ -89,67 +99,57 @@
     <dependency>
       <groupId>com.tabtale.tt_plugins.android</groupId>
       <artifactId>TT_Plugins_Banners_MoPub</artifactId>
-      <version>3.8.0.5.1</version>
-    </dependency>
-    <dependency>
-      <groupId>com.tabtale.tt_plugins.android</groupId>
-      <artifactId>TT_Plugins_Interstitials_Admob</artifactId>
-      <version>3.8.0.5.1</version>
+      <version>0.0.0.0.387</version>
     </dependency>
     <dependency>
       <groupId>com.tabtale.tt_plugins.android</groupId>
       <artifactId>TT_Plugins_Banners_Admob</artifactId>
-      <version>3.8.0.5.1</version>
+      <version>0.0.0.0.387</version>
+    </dependency>
+    <dependency>
+      <groupId>com.tabtale.tt_plugins.android</groupId>
+      <artifactId>TT_Plugins_Interstitials_Admob</artifactId>
+      <version>0.0.0.0.396</version>
     </dependency>
     <dependency>
       <groupId>com.tabtale.tt_plugins.android</groupId>
       <artifactId>TT_Plugins_Interstitials_MoPub</artifactId>
-      <version>3.8.0.5.1</version>
+      <version>0.0.0.0.396</version>
     </dependency>
     <dependency>
       <groupId>com.tabtale.tt_plugins.android</groupId>
       <artifactId>TT_Plugins_RewardedAds_MoPub</artifactId>
-      <version>3.8.0.5.1</version>
+      <version>0.0.0.0.376</version>
     </dependency>
     <dependency>
       <groupId>com.tabtale.tt_plugins.android</groupId>
       <artifactId>TT_Plugins_RewardedAds_Admob</artifactId>
-      <version>3.8.0.5.1</version>
-    </dependency>
-    <dependency>
-      <groupId>com.tabtale.tt_plugins.android</groupId>
-      <artifactId>TT_Plugins_Core</artifactId>
-      <version>3.8.0.6.2</version>
-    </dependency>
-    <dependency>
-      <groupId>com.tabtale.tt_plugins.android</groupId>
-      <artifactId>TT_Plugins_AppsFlyer</artifactId>
-      <version>3.8.0.6.2</version>
-    </dependency>
-    <dependency>
-      <groupId>com.tabtale.tt_plugins.android</groupId>
-      <artifactId>TT_Plugins_Analytics</artifactId>
-      <version>3.8.0.6.2</version>
+      <version>0.0.0.0.376</version>
     </dependency>
     <dependency>
       <groupId>com.tabtale.tt_plugins.android</groupId>
       <artifactId>TT_Plugins_FirebaseEchoAgent</artifactId>
-      <version>3.8.0.6.2</version>
+      <version>3.9.0.1.1</version>
     </dependency>
     <dependency>
       <groupId>com.tabtale.tt_plugins.android</groupId>
       <artifactId>TT_Plugins_DeltaDnaAgent</artifactId>
-      <version>3.8.0.6.2</version>
+      <version>3.9.0.1.1</version>
     </dependency>
     <dependency>
       <groupId>com.tabtale.tt_plugins.android</groupId>
       <artifactId>TT_Plugins_TTAnalyticsAgent</artifactId>
-      <version>3.8.0.6.2</version>
+      <version>3.9.0.1.1</version>
     </dependency>
     <dependency>
       <groupId>com.tabtale.tt_plugins.android</groupId>
       <artifactId>TT_Plugins_FirebaseAgent</artifactId>
-      <version>3.8.0.6.2</version>
+      <version>3.9.0.1.1</version>
+    </dependency>
+    <dependency>
+      <groupId>com.tabtale.tt_plugins.android</groupId>
+      <artifactId>TT_Plugins_RewardedInterstitials</artifactId>
+      <version>3.9.0.1.1</version>
     </dependency>
   </dependencies>
 </project>
